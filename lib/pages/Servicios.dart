@@ -25,6 +25,7 @@ class _ServiciosState extends State<Servicios> {
       print(e);
     }
   }
+  
 
 
 
@@ -54,17 +55,20 @@ Widget BuildCard(int index, List datos) => Container(
   color: Colors.grey,
   width: double.infinity,
   height: 160,
-  child: Center(child: Column(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(datos[index]['nombre'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-      Text(datos[index]['descripcion']),
-      const Divider(
-            height: 20,
-            thickness: 5,
-            endIndent: 0,
-            color: Colors.white,
-          ),
-    ],
+  child: Center(child: Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(datos[index]['nombre'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+        Text(datos[index]['descripcion']),
+        const Divider(
+              height: 20,
+              thickness: 5,
+              endIndent: 0,
+              color: Colors.white,
+            ),
+      ],
+    ),
   )),
 );

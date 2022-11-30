@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
-
-class Noticias extends StatefulWidget {
-  const Noticias({super.key});
+class Albergues extends StatefulWidget {
+  const Albergues({super.key});
 
   @override
-  State<Noticias> createState() => _NoticiasState();
+  State<Albergues> createState() => _AlberguesState();
 }
 
-class _NoticiasState extends State<Noticias> {
+class _AlberguesState extends State<Albergues> {
+
   var data = [];
   var cant = 0;
 
-  Future<void> getNoticias() async {
+  Future<void> getAlbergues() async {
     try {
-      var response = await Dio().get('https://adamix.net/defensa_civil/def/noticias.php');
+      var response = await Dio().get('https://adamix.net/defensa_civil/def/albergues.php');
       data = response.data['datos'];
       cant = response.data['datos'].length;
       setState(() {});
@@ -25,26 +25,20 @@ class _NoticiasState extends State<Noticias> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
-    getNoticias();
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
+    getAlbergues();
+    return ListView.builder(
               itemCount: cant,
               itemBuilder: (context, index){
                 return BuildCard(index, data, context);
               },
-            ),
-          )
-        ],
-      ),
-    );
+            );
   }
 }
+
+
 
 Widget BuildCard(int index, List data, context) => Container(
   color: Colors.grey,
@@ -53,10 +47,10 @@ Widget BuildCard(int index, List data, context) => Container(
   child: Center(child: Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      Text(data[index]['titulo'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+      Text(data[index]['edificio'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
       InkWell(
         child: const Text("VER", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Noticia(titulo: data[index]["titulo"], desc: data[index]["contenido"]))),
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Noticia(edif: data[index]["edificio"], ciudad: data[index]["ciudad"], tel: data[index]['telefono'], cod: data[index]['codigo'], cord: data[index]['coordinador']))),
       ),
       const Divider(
             height: 20,
@@ -70,16 +64,19 @@ Widget BuildCard(int index, List data, context) => Container(
 
 
 class Noticia extends StatelessWidget {
-  final String titulo;
-  final String desc;
+  final String edif;
+  final String ciudad;
+  final String tel;
+  final String cod;
+  final String cord;
 
-  const Noticia({super.key, required this.titulo, required this.desc});
+  const Noticia({super.key, required this.edif, required this.ciudad, required this.tel, required this.cod, required this.cord});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(titulo),
+        title: Text(edif),
         centerTitle: true,
       ),
       body: Padding(
@@ -87,10 +84,10 @@ class Noticia extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(children: [
-            Text(
-              desc,
-              style: const TextStyle(fontSize: 13),
-            ),
+            Text('Ciudad: $ciudad', style: const TextStyle(fontSize: 20),),
+            Text('Telefono: $tel', style: const TextStyle(fontSize: 20),),
+            Text('Codigo: $cod', style: const TextStyle(fontSize: 20),),
+            Text('Coordinador: $cord', style: const TextStyle(fontSize: 20),),
           ]),
         ),
       ),

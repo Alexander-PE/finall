@@ -1,7 +1,9 @@
+import 'package:finall/pages/Albergues.dart';
 import 'package:finall/pages/Historia.dart';
 import 'package:finall/pages/Inicio.dart';
 import 'package:finall/pages/Noticias.dart';
 import 'package:finall/pages/Servicios.dart';
+import 'package:finall/pages/Videos.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,7 +25,9 @@ class _MyAppState extends State<MyApp> {
     Inicio(),
     Historia(),
     Servicios(),
-    Noticias()
+    Noticias(),
+    Videos(),
+    Albergues()
   ];
   @override
   Widget build(BuildContext context) {
@@ -52,6 +56,16 @@ class _MyAppState extends State<MyApp> {
               ListTile(title: const Text("Noticias"), onTap: (){
                 setState(() {
                   page=3;
+                });
+              },),
+              ListTile(title: const Text("Videos"), onTap: (){
+                setState(() {
+                  page=4;
+                });
+              },),
+              ListTile(title: const Text("Albergues"), onTap: (){
+                setState(() {
+                  page=5;
                 });
               },),
           ],),
