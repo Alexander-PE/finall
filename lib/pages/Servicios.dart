@@ -25,9 +25,6 @@ class _ServiciosState extends State<Servicios> {
     }
   }
   
-
-
-
   @override
   Widget build(BuildContext context) {
     getServicios();
@@ -39,7 +36,7 @@ class _ServiciosState extends State<Servicios> {
             child: ListView.builder(
               itemCount: cant,
               itemBuilder: (context, index){
-                return BuildCard(index, data);
+                return BuildCard(index, data, context);
               },
             ),
           )
@@ -50,24 +47,58 @@ class _ServiciosState extends State<Servicios> {
 }
 
 
-Widget BuildCard(int index, List datos) => Container(
+Widget BuildCard(int index, List data, context) => Container(
   color: Colors.grey,
   width: double.infinity,
-  height: 160,
-  child: Center(child: Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(datos[index]['nombre'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-        Text(datos[index]['descripcion']),
-        const Divider(
-              height: 20,
-              thickness: 5,
-              endIndent: 0,
-              color: Colors.white,
-            ),
-      ],
-    ),
+  height: 100,
+  child: Center(child: Column(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(data[index]['nombre'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+      InkWell(
+        child: const Text("VER", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Servicio(titulo: data[index]["nombre"], desc: data[index]["descripcion"]))),
+      ),
+      const Divider(
+            height: 20,
+            thickness: 5,
+            endIndent: 0,
+            color: Colors.white,
+          ),
+    ],
   )),
 );
+
+
+class Servicio extends StatelessWidget {
+  final String titulo;
+  final String desc;
+
+  const Servicio({super.key, required this.titulo, required this.desc});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(titulo),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Text(
+                desc,
+                style: const TextStyle(fontSize: 20),
+              ),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+

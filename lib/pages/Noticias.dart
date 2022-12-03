@@ -33,6 +33,7 @@ class _NoticiasState extends State<Noticias> {
         children: [
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.only(top: 12),
               itemCount: cant,
               itemBuilder: (context, index){
                 return BuildCard(index, data, context);
