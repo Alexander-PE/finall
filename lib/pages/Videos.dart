@@ -26,7 +26,6 @@ class _VideosState extends State<Videos> {
       //   playlist.add(vid["link"]);
       // }
       setState(() {});
-      // print(response.data['datos'][0]['nombre']);
     } catch (e) {
       print(e);
     }

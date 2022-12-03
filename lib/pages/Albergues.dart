@@ -19,7 +19,6 @@ class _AlberguesState extends State<Albergues> {
       data = response.data['datos'];
       cant = response.data['datos'].length;
       setState(() {});
-      // print(response.data['datos'][0]['nombre']);
     } catch (e) {
       print(e);
     }

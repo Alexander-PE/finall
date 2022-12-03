@@ -15,11 +15,10 @@ class _MedidasState extends State<Medidas> {
 
   Future<void> getMedidas() async {
     try {
-      var response = await Dio().get('https://adamix.net/defensa_civil/def/medidas_preventicas.php');
+      var response = await Dio().get('https://adamix.net/defensa_civil/def/medidas_preventivas.php');
       data = response.data['datos'];
       cant = response.data['datos'].length;
       setState(() {});
-      // print(response.data['datos'][0]['nombre']);
     } catch (e) {
       print(e);
     }
@@ -27,10 +26,14 @@ class _MedidasState extends State<Medidas> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column()
-    );
+    getMedidas();
+    setState(() {});
+    return ListView.builder(
+              itemCount: cant,
+              itemBuilder: (context, index){
+                return BuildCard(index, data, context);
+              },
+            );
   }
 }
 
@@ -76,9 +79,11 @@ class Medida extends StatelessWidget {
         padding: const EdgeInsets.all(18.0),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(children: [
-            Text(desc, style: const TextStyle(fontSize: 15),),
-          ]),
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Text(desc, style: const TextStyle(fontSize: 18),),
+            ]),
+          ),
         ),
       ),
     );
