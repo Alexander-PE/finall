@@ -1,6 +1,7 @@
 import 'package:finall/pages/Albergues.dart';
 import 'package:finall/pages/Historia.dart';
 import 'package:finall/pages/Inicio.dart';
+import 'package:finall/pages/Medidas.dart';
 import 'package:finall/pages/Noticias.dart';
 import 'package:finall/pages/Servicios.dart';
 import 'package:finall/pages/Videos.dart';
@@ -27,7 +28,8 @@ class _MyAppState extends State<MyApp> {
     Servicios(),
     Noticias(),
     Videos(),
-    Albergues()
+    Albergues(),
+    Medidas()
   ];
   @override
   Widget build(BuildContext context) {
@@ -66,6 +68,11 @@ class _MyAppState extends State<MyApp> {
               ListTile(title: const Text("Albergues"), onTap: (){
                 setState(() {
                   page=5;
+                });
+              },),
+              ListTile(title: const Text("Medidas"), onTap: (){
+                setState(() {
+                  page=6;
                 });
               },),
           ],),
