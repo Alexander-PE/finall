@@ -4,6 +4,7 @@ import 'package:finall/pages/Inicio.dart';
 import 'package:finall/pages/Medidas.dart';
 import 'package:finall/pages/Miembros.dart';
 import 'package:finall/pages/Noticias.dart';
+import 'package:finall/pages/Registrar.dart';
 import 'package:finall/pages/Servicios.dart';
 import 'package:finall/pages/Videos.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,8 @@ class _MyAppState extends State<MyApp> {
     Videos(),
     Albergues(),
     Medidas(),
-    Miembros()
+    Miembros(),
+    Registrar()
   ];
 
   @override
@@ -81,6 +83,11 @@ class _MyAppState extends State<MyApp> {
               ListTile(title: const Text("Miembros"), onTap: (){
                 setState(() {
                   page=7;
+                });
+              },),
+              ListTile(title: const Text("Registrar"), onTap: (){
+                setState(() {
+                  page=8;
                 });
               },),
           ],),

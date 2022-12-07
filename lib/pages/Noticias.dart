@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
-
 class Noticias extends StatefulWidget {
   const Noticias({super.key});
 
