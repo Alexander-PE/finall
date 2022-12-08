@@ -1,3 +1,4 @@
+import 'package:finall/pages/Acerca.dart';
 import 'package:finall/pages/Albergues.dart';
 import 'package:finall/pages/Historia.dart';
 import 'package:finall/pages/Inicio.dart';
@@ -33,7 +34,8 @@ class _MyAppState extends State<MyApp> {
     Albergues(),
     Medidas(),
     Miembros(),
-    Registrar()
+    Registrar(),
+    Acerca()
   ];
 
   @override
@@ -88,6 +90,11 @@ class _MyAppState extends State<MyApp> {
               ListTile(title: const Text("Registrar"), onTap: (){
                 setState(() {
                   page=8;
+                });
+              },),
+              ListTile(title: const Text("Acerca"), onTap: (){
+                setState(() {
+                  page=9;
                 });
               },),
           ],),
