@@ -20,7 +20,20 @@ class _RegistrarState extends State<Registrar> {
 
   Future<void> register(String cedula, String nombre, String apellido, String passwd, String correo, String telefono) async {
     try {
-      var response = await Dio().post('https://adamix.net/defensa_civil/def/registro.php', data: {'cedula':cedula, 'nombre':nombre, 'apellido':apellido, 'clave':passwd, 'correo':correo, 'telefono':telefono });
+      var formdat = FormData.fromMap({
+        'cedula':cedula, 
+        'nombre':nombre, 
+        'apellido':apellido, 
+        'clave':passwd, 
+        'correo':correo, 
+        'telefono':telefono 
+      });
+
+      // print(cedula);
+      // print(nombre);
+
+      Response response = await Dio().post('https://adamix.net/defensa_civil/def/registro.php', data: formdat);
+      print(response.data.toString());
     } catch (e) {
       print(e);
     }
@@ -30,43 +43,50 @@ class _RegistrarState extends State<Registrar> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextField(
-            controller: cedula,
-            decoration: const InputDecoration(hintText: 'Inserte su cedula' ,border: OutlineInputBorder())
-          ),
-          TextField(
-            controller: nombre,
-            decoration: const InputDecoration(hintText: 'Inserte su nombre' ,border: OutlineInputBorder())
-          ),
-          TextField(
-            controller: apellido,
-            decoration: const InputDecoration(hintText: 'Inserte su apellido' ,border: OutlineInputBorder())
-          ),
-          TextField(
-            controller: passwd,
-            decoration: const InputDecoration(hintText: 'Inserte su clave' ,border: OutlineInputBorder())
-          ),
-          TextField(
-            controller: correo,
-            decoration: const InputDecoration(hintText: 'Inserte su correo' ,border: OutlineInputBorder())
-          ),
-          TextField(
-            controller: telefono,
-            decoration: const InputDecoration(hintText: 'Inserte su telefono' ,border: OutlineInputBorder())
-          ),
-          MaterialButton(
-            onPressed: () async{
-              // await getGender(_textController.text);
-              await register(cedula.text, nombre.text, apellido.text, passwd.text, correo.text, telefono.text);
-              setState(() {});
-            },
-            color: Colors.blue,
-            child: const Text("Identificar", style: TextStyle(color: Colors.white),),
-          )
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextField(
+              controller: cedula,
+              decoration: const InputDecoration(hintText: 'Inserte su cedula' ,border: OutlineInputBorder())
+            ),
+            const Text(""),
+            TextField(
+              controller: nombre,
+              decoration: const InputDecoration(hintText: 'Inserte su nombre' ,border: OutlineInputBorder())
+            ),
+            const Text(""),
+            TextField(
+              controller: apellido,
+              decoration: const InputDecoration(hintText: 'Inserte su apellido' ,border: OutlineInputBorder())
+            ),
+            const Text(""),
+            TextField(
+              controller: passwd,
+              decoration: const InputDecoration(hintText: 'Inserte su clave' ,border: OutlineInputBorder())
+            ),
+            const Text(""),
+            TextField(
+              controller: correo,
+              decoration: const InputDecoration(hintText: 'Inserte su correo' ,border: OutlineInputBorder())
+            ),
+            const Text(""),
+            TextField(
+              controller: telefono,
+              decoration: const InputDecoration(hintText: 'Inserte su telefono' ,border: OutlineInputBorder())
+            ),
+            const Text(""),
+            MaterialButton(
+              onPressed: () async{
+                // await getGender(_textController.text);
+                await register(cedula.text, nombre.text, apellido.text, passwd.text, correo.text, telefono.text);
+                setState(() {});
+              },
+              color: Colors.blue,
+              child: const Text("Identificar", style: TextStyle(color: Colors.white),),
+            )
+          ],
+        ),
       ),
     );
   }
