@@ -22,7 +22,7 @@ class Acerca extends StatelessWidget {
             const Text(""),
             InkWell(
               child: const Text("Contacto", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-              onTap: () => launch('https://t.me/+hRZE1V-AE5w4ZGJh')
+              onTap: () => launch('https://t.me/x4nderlil')
             ),
 
           ],
