@@ -2,6 +2,7 @@ import 'package:finall/pages/Acerca.dart';
 import 'package:finall/pages/Albergues.dart';
 import 'package:finall/pages/Historia.dart';
 import 'package:finall/pages/Inicio.dart';
+import 'package:finall/pages/Login.dart';
 import 'package:finall/pages/Medidas.dart';
 import 'package:finall/pages/Miembros.dart';
 import 'package:finall/pages/Noticias.dart';
@@ -35,7 +36,8 @@ class _MyAppState extends State<MyApp> {
     Medidas(),
     Miembros(),
     Registrar(),
-    Acerca()
+    Acerca(),
+    LoginPage()
   ];
 
   @override
@@ -90,6 +92,11 @@ class _MyAppState extends State<MyApp> {
               ListTile(title: const Text("Registrar"), onTap: (){
                 setState(() {
                   page=8;
+                });
+              },),
+              ListTile(title: const Text("Login"), onTap: (){
+                setState(() {
+                  page=10;
                 });
               },),
               ListTile(title: const Text("Acerca"), onTap: (){

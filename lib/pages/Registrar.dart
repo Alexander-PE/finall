@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:finall/main.dart';
 import 'package:flutter/material.dart';
 
 class Registrar extends StatefulWidget {
@@ -20,7 +19,7 @@ class _RegistrarState extends State<Registrar> {
 
   Future<void> register(String cedula, String nombre, String apellido,
       String passwd, String correo, String telefono) async {
-    if (cedula == '' || nombre == '' || apellido == '' || correo == '' || telefono == '') {
+    if (cedula == '' || nombre == '' || apellido == '' || correo == '' || telefono == '' || passwd == '') {
       alert = const AlertDialog(
         title: Text("Formulario"),
         content: Text("Complete el formulario"),
@@ -39,9 +38,7 @@ class _RegistrarState extends State<Registrar> {
         // print(cedula);
         // print(nombre);
 
-        Response response = await Dio().post(
-            'https://adamix.net/defensa_civil/def/registro.php',
-            data: formdat);
+        Response response = await Dio().post('https://adamix.net/defensa_civil/def/registro.php', data: formdat);
         alert = AlertDialog(
           title: const Text("Formulario"),
           content: Text(response.data['mensaje']),

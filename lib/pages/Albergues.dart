@@ -23,8 +23,7 @@ class _AlberguesState extends State<Albergues> {
       print(e);
     }
   }
-
-
+  
   @override
   Widget build(BuildContext context) {
     getAlbergues();
@@ -37,8 +36,6 @@ class _AlberguesState extends State<Albergues> {
   }
 }
 
-
-
 Widget BuildCard(int index, List data, context) => Container(
   color: Colors.grey,
   width: double.infinity,
@@ -49,7 +46,7 @@ Widget BuildCard(int index, List data, context) => Container(
       Text(data[index]['edificio'], style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
       InkWell(
         child: const Text("VER", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Noticia(edif: data[index]["edificio"], ciudad: data[index]["ciudad"], tel: data[index]['telefono'], cod: data[index]['codigo'], cord: data[index]['coordinador']))),
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Albergue(edif: data[index]["edificio"], ciudad: data[index]["ciudad"], tel: data[index]['telefono'], cod: data[index]['codigo'], cord: data[index]['coordinador']))),
       ),
       const Divider(
             height: 20,
@@ -62,14 +59,14 @@ Widget BuildCard(int index, List data, context) => Container(
 );
 
 
-class Noticia extends StatelessWidget {
+class Albergue extends StatelessWidget {
   final String edif;
   final String ciudad;
   final String tel;
   final String cod;
   final String cord;
 
-  const Noticia({super.key, required this.edif, required this.ciudad, required this.tel, required this.cod, required this.cord});
+  const Albergue({super.key, required this.edif, required this.ciudad, required this.tel, required this.cod, required this.cord});
 
   @override
   Widget build(BuildContext context) {
