@@ -1,21 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
-class Inicio extends StatelessWidget {
+class Inicio extends StatefulWidget {
   const Inicio({super.key});
 
   @override
+  State<Inicio> createState() => _InicioState();
+}
+
+class _InicioState extends State<Inicio> {
+  List imagenes = [
+    "assets/images/accion1.jpg", 
+    "assets/images/accion2.jpg",
+    "assets/images/accion3.jpg",
+    "assets/images/accion4.jpg",
+  ];
+  
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: SingleChildScrollView(
-        child: Column(
-          children: const [
-            Text("La Defensa Civil tiene por objetivo principal asegurar que los operativos del país sean adecuados para los perjuicios que se originen por los desastres causados por inundación, terremoto, tormenta, huracán, fuego, escasez o distribución deficiente de suministro de materiales, u otros motivos similares, y en general para proveer el orden, salud y bienestar económico, seguridad pública prevención de la vida y de la propiedad en tales circunstancias.", style: TextStyle(fontSize: 20),),
-            Text(""),
-            Text("Tiene como mision Dirigir las acciones de coordinación, preparación y operación de todas las funciones de emergencias ante la ocurrencia de un evento natural o antrópico en una forma eficiente y eficaz, garantizando un control adecuado de las operaciones para resguardar la vida y la propiedad de los habitantes de República Dominicana.", style: TextStyle(fontSize: 20))
-          ],
-        ),
-      ),
-    );
+    return Builder(
+        builder: (context) {
+          final double height = MediaQuery.of(context).size.height;
+          return CarouselSlider(
+            options: CarouselOptions(
+              height: height,
+              viewportFraction: 1.0,
+              enlargeCenterPage: false,
+              // autoPlay: false,
+            ),
+            items: imagenes
+                .map((item) => Container(
+                      child: Center(
+                          child: Image.asset(
+                          item,
+                          fit: BoxFit.cover,
+                          height: height,
+                      )),
+                    ))
+                .toList(),
+          );
+        },
+      );
   }
 }
